@@ -47,7 +47,7 @@ module.exports = function(RED) {
             });
         }
 
-		var awsService = new AWS.Rekognition( { 'region': node.region } );
+		var awsService = new AWS.Comprehend( { 'region': node.region } );
 
 		node.on("input", function(msg) {
 			node.sendMsg = function (err, data) {
