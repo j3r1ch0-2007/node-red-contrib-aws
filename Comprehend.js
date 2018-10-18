@@ -248,9 +248,9 @@ module.exports = function(RED) {
 			var params={};
 			//copyArgs
 			
-			copyArg(n,"LanguageText",params,undefined,false);
+			copyArg(n,"Text",params,undefined,false);
 			
-			copyArg(msg,"LanguageText",params,undefined,false); 
+			copyArg(msg,"Text",params,undefined,false); 
 
 			svc.detectDominantLanguage(params,cb);
 		}

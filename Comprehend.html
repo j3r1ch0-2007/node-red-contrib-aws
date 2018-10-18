@@ -17,8 +17,8 @@
 
 <script type="text/x-red" data-template-name="AWS Comprehend">
 		<style scoped>
-				.hiddenAttrs {display:none;}
-				.visibleAttrs {display:block;}
+			.hiddenAttrs {display:none;}
+			.visibleAttrs {display:block;}
 		</style>
 	<div class="form-row">
 		<label for="node-input-aws"><i class="fa fa-user"></i> AWS</label>
@@ -89,133 +89,135 @@
 		</select>
 	</div>
 	<div class="form-row">
-		<label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name"></input>
 	</div>
-	<hr/>	
+	<hr/>
 	<div id="AttrHolder">
-	      
-	<div class="form-row" id='TextListAttr' class='hiddenAttrs'>
-		<label for="node-input-TextList"><i class="fa fa-tag"></i>TextList</label>
-		<input type="text" id="node-input-TextList" placeholder="TextList" pattern=".{,5000}></input>
-	</div>
-	<div class="form-row" id='LanguageTextListAttr' class='hiddenAttrs'>
-			<label for="node-input-LanguageTextList"><i class="fa fa-tag"></i>LanguageTextList</label>
-			<input type="text" id="node-input-LanguageTextList" placeholder="LanguageTextList" pattern=".{20,5000}></input>
-	</div>
+
 	<div class="form-row" id='LanguageCodeAttr' class='hiddenAttrs'>
-			<label for="node-input-LanguageCode"><i class="fa fa-tag"></i>LanguageCode</label>
-			<input type="text" id="node-input-LanguageCode" placeholder="LanguageCode"></input>
-	</div> 
+		<label for="node-input-LanguageCode"><i class="fa fa-tag"></i> LanguageCode</label>
+		<select type="text" id="node-input-LanguageCode">
+
+			<option value="en">en</option>
+
+			<option value="es">es</option>
+
+			<option value="fr">fr</option>
+
+			<option value="de">de</option>
+
+			<option value="it">it</option>
+
+			<option value="pt">pt</option>
+			;
+		</select>
+	</div>
 	<div class="form-row" id='JobIdAttr' class='hiddenAttrs'>
-		<label for="node-input-JobId"><i class="fa fa-tag"></i>JobId</label>
+		<label for="node-input-JobId"><i class="fa fa-tag"></i> JobId</label>
 		<input type="text" id="node-input-JobId" placeholder="JobId"></input>
-	</div> 
+	</div>
 	<div class="form-row" id='TextAttr' class='hiddenAttrs'>
-		<label for="node-input-Text"><i class="fa fa-tag"></i>Text</label>
-		<input type="text" id="node-input-Text" placeholder="Text"  pattern=".{,5000}"></input>
-	</div> 
-	<div class="form-row" id='LanguageTextAttr' class='hiddenAttrs'>
-			<label for="node-input-LanguageText"><i class="fa fa-tag"></i>Text</label>
-			<input type="text" id="node-input-LanguageText" placeholder="LanguageText" pattern=".{20,5000}"></input>
-		</div> 
-		</div>
+		<label for="node-input-Text"><i class="fa fa-tag"></i> Text</label>
+		<input type="text" id="node-input-Text" placeholder="Text" pattern=".{,5000}"></input>
+	</div>
+	</div>
 
  <script>
-	  var nodeOps={
-				BatchDetectDominantLanguage:[
-					'#LanguageTextListAttr'
-					],
-				BatchDetectEntities:[
-					'#LanguageCodeAttr','#TextListAttr'
-					],
-				BatchDetectKeyPhrases:[
-					'#LanguageCodeAttr','#TextListAttr'
-					],
-				BatchDetectSentiment:[
-					'#LanguageCodeAttr','#TextListAttr'
-					],
-				BatchDetectSyntax:[
-					'#LanguageCodeAttr','#TextListAttr'
-					],
-				DescribeDominantLanguageDetectionJob:[
-					'#JobIdAttr'
-					],
-				DescribeEntitiesDetectionJob:[
-					'#JobIdAttr'
-					],
-				DescribeKeyPhrasesDetectionJob:[
-					'#JobIdAttr'
-					],
-				DescribeSentimentDetectionJob:[
-					'#JobIdAttr'
-					],
-				DescribeTopicsDetectionJob:[
-					'#JobIdAttr'
-					],
-				DetectDominantLanguage:[
-					'#LanguageTextAttr'
-					],
-				DetectEntities:[
-					'#LanguageCodeAttr','#TextAttr'
-					],
-				DetectKeyPhrases:[
-					'#LanguageCodeAttr','#TextAttr'
-					],
-				DetectSentiment:[
-					'#LanguageCodeAttr','#TextAttr'
-					],
-				DetectSyntax:[
-					'#LanguageCodeAttr','#TextAttr'
-					],
-				ListDominantLanguageDetectionJobs:[
+	var nodeOps={
+			BatchDetectDominantLanguage:[
+				'#TextAttr',
+			],
+			BatchDetectEntities:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			BatchDetectKeyPhrases:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			BatchDetectSentiment:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			BatchDetectSyntax:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			DescribeDominantLanguageDetectionJob:[
+				'#JobIdAttr',
+			],
+			DescribeEntitiesDetectionJob:[
+				'#JobIdAttr',
+			],
+			DescribeKeyPhrasesDetectionJob:[
+				'#JobIdAttr',
+			],
+			DescribeSentimentDetectionJob:[
+				'#JobIdAttr',
+			],
+			DescribeTopicsDetectionJob:[
+				'#JobIdAttr',
+			],
+			DetectDominantLanguage:[
+				'#TextAttr',
+			],
+			DetectEntities:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			DetectKeyPhrases:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			DetectSentiment:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			DetectSyntax:[
+				'#LanguageCodeAttr','#TextAttr',
+			],
+			ListDominantLanguageDetectionJobs:[
 
-					],
-				ListEntitiesDetectionJobs:[
+			],
+			ListEntitiesDetectionJobs:[
 
-					],
-				ListKeyPhrasesDetectionJobs:[
+			],
+			ListKeyPhrasesDetectionJobs:[
 
-					],
-				ListSentimentDetectionJobs:[
-					
-					],
-				ListTopicsDetectionJobs:[
-					
-					],
-				StartDominantLanguageDetectionJob:[
-					
-					],
-				StartEntitiesDetectionJob:[
-					
-					],
-				StartKeyPhrasesDetectionJob:[
-					
-					],
-				StartSentimentDetectionJob:[
-					
-					],
-				StartTopicsDetectionJob:[
-					
-					],
-				StopDominantLanguageDetectionJob:[
-					'#JobIdAttr'
-					],
-				StopEntitiesDetectionJob:[
-					'#JobIdAttr'
-					],
-				StopKeyPhrasesDetectionJob:[
-					'#JobIdAttr'
-					],
-				StopSentimentDetectionJob:[
-					'#JobIdAttr'
-					]
-		};
-		$('#node-input-operation').on('change',function(){
-			$('#AttrHolder').children().addClass('hiddenAttrs').removeClass('visibleAttrs');
-				if (nodeOps[this.value])
-					$(nodeOps[this.value].join()).addClass('visibleAttrs').removeClass('hiddenAttrs');
-		 });
+			],
+			ListSentimentDetectionJobs:[
+
+			],
+			ListTopicsDetectionJobs:[
+
+			],
+			StartDominantLanguageDetectionJob:[
+
+			],
+			StartEntitiesDetectionJob:[
+
+			],
+			StartKeyPhrasesDetectionJob:[
+
+			],
+			StartSentimentDetectionJob:[
+
+			],
+			StartTopicsDetectionJob:[
+
+			],
+			StopDominantLanguageDetectionJob:[
+				'#JobIdAttr',
+			],
+			StopEntitiesDetectionJob:[
+				'#JobIdAttr',
+			],
+			StopKeyPhrasesDetectionJob:[
+				'#JobIdAttr',
+			],
+			StopSentimentDetectionJob:[
+				'#JobIdAttr',
+			]
+	};
+	$('#node-input-operation').on('change',function(){
+		$('#AttrHolder').children().addClass('hiddenAttrs').removeClass('visibleAttrs');
+			if (nodeOps[this.value])
+				$(nodeOps[this.value].join()).addClass('visibleAttrs').removeClass('hiddenAttrs');
+	 });
  </script>
 
 </script>
@@ -240,9 +242,13 @@ NOTE: Parameters must be specified in the message, using the case specified in t
 		defaults: {
 			aws: {type:"amazon config",required:true},
 			operation: { value: 'DetectSentiment' },
-				LanguageCode: { value: "en"} ,
-				Text: { value: ""} ,
-				JobId: { value: ""} ,
+
+				LanguageCode: { value: "en" },
+				Text: { value: "" },
+				JobId: { value: "" },
+				LanguageTextList: {value: "" },
+				TextList: { value: "" },
+				LanguageText: { value: "" },
 			name: { value: "" }
 		},
 		inputs:1,
@@ -257,4 +263,3 @@ NOTE: Parameters must be specified in the message, using the case specified in t
 		}
 	});
 </script>
-
