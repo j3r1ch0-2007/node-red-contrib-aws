@@ -28,7 +28,8 @@
     "rekognition",
     "firehose",
     "tagging",
-    "rds"
+    "rds",
+    "comprehend"
   ],
   "node-red": {
     "nodes": {
@@ -50,6 +51,7 @@
       "Rekognition": "Rekognition.js",
       "Polly": "Polly.js",
       "AWS ECS": "Ecs.js",
+      "AWS Comprehend": "Comprehend.js",
       "amazon config": "config.js"
     }
   },
