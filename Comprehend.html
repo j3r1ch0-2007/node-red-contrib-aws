@@ -1,0 +1,268 @@
+
+<!--
+  Copyright 2017 Daniel Thomas.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<script type="text/x-red" data-template-name="AWS Comprehend">
+		<style scoped>
+				.hiddenAttrs {display:none;}
+				.visibleAttrs {display:block;}
+		</style>
+	<div class="form-row">
+		<label for="node-input-aws"><i class="fa fa-user"></i> AWS</label>
+		<input type="text" id="node-input-aws">
+	</div>
+	<div class="form-row">
+		<label for="node-input-operation"><i class="fa fa-wrench"></i> Operation</label>
+		<select type="text" id="node-input-operation">
+	
+			<option value="BatchDetectDominantLanguage">BatchDetectDominantLanguage</option>
+		
+			<option value="BatchDetectEntities">BatchDetectEntities</option>
+		
+			<option value="BatchDetectKeyPhrases">BatchDetectKeyPhrases</option>
+
+			<option value="BatchDetectSentiment">BatchDetectSentiment</option>
+
+			<option value="BatchDetectSyntax">BatchDetectSyntax</option>
+
+			<option value="DescribeDominantLanguageDetectionJob">DescribeDominantLanguageDetectionJob</option>
+
+			<option value="DescribeEntitiesDetectionJob">DescribeEntitiesDetectionJob</option>
+
+			<option value="DescribeKeyPhrasesDetectionJob">DescribeKeyPhrasesDetectionJob</option>
+
+			<option value="DescribeSentimentDetectionJob">DescribeSentimentDetectionJob</option>
+
+			<option value="DescribeTopicsDetectionJob">DescribeTopicsDetectionJob</option>
+
+			<option value="DetectDominantLanguage">DetectDominantLanguage</option>
+
+			<option value="DetectEntities">DetectEntities</option>
+
+			<option value="DetectKeyPhrases">DetectKeyPhrases</option>
+
+			<option value="DetectSentiment">DetectSentiment</option>
+
+			<option value="DetectSyntax">DetectSyntax</option>
+
+			<option value="ListDominantLanguageDetectionJobs">ListDominantLanguageDetectionJobs</option>
+
+			<option value="ListEntitiesDetectionJobs">ListEntitiesDetectionJobs</option>
+
+			<option value="ListKeyPhrasesDetectionJobs">ListKeyPhrasesDetectionJobs</option>
+
+			<option value="ListSentimentDetectionJobs">ListSentimentDetectionJobs</option>
+
+			<option value="ListTopicsDetectionJobs">ListTopicsDetectionJobs</option>
+
+			<option value="StartDominantLanguageDetectionJob">StartDominantLanguageDetectionJob</option>
+
+			<option value="StartEntitiesDetectionJob">StartEntitiesDetectionJob</option>
+
+			<option value="StartKeyPhrasesDetectionJob">StartKeyPhrasesDetectionJob</option>
+
+			<option value="StartSentimentDetectionJob">StartSentimentDetectionJob</option>
+
+			<option value="StartTopicsDetectionJob">StartTopicsDetectionJob</option>
+
+			<option value="StopDominantLanguageDetectionJob">StopDominantLanguageDetectionJob</option>
+
+			<option value="StopEntitiesDetectionJob">StopEntitiesDetectionJob</option>
+
+			<option value="StopKeyPhrasesDetectionJob">StopKeyPhrasesDetectionJob</option>
+
+			<option value="StopSentimentDetectionJob">StopSentimentDetectionJob</option>
+		;
+		</select>
+	</div>
+	<div class="form-row">
+		<label for="node-input-name"><i class="fa fa-tag"></i>Name</label>
+		<input type="text" id="node-input-name" placeholder="Name"></input>
+	</div>
+	<hr/>	
+	<div id="AttrHolder">
+	      
+	<div class="form-row" id='TextListAttr' class='hiddenAttrs'>
+		<label for="node-input-TextList"><i class="fa fa-tag"></i>TextList</label>
+		<input type="text" id="node-input-TextList" placeholder="TextList" pattern=".{,5000}></input>
+	</div>
+	<div class="form-row" id='LanguageTextListAttr' class='hiddenAttrs'>
+			<label for="node-input-LanguageTextList"><i class="fa fa-tag"></i>LanguageTextList</label>
+			<input type="text" id="node-input-LanguageTextList" placeholder="LanguageTextList" pattern=".{20,5000}></input>
+	</div>
+	<div class="form-row" id='LanguageCodeAttr' class='hiddenAttrs'>
+		<label for="node-input-LanguageCode"><i class="fa fa-wrench"></i> LanguageCode</label>
+		<select type="text" id="node-input-LanguageCode">		
+			<option value="en">en</option>		
+			<option value="es">es</option>		
+			<option value="fr">fr</option>
+			<option value="de">de</option>
+			<option value="it">it</option>
+			<option value="pt">pt</option>
+		;
+		</select>
+	</div>
+	<div class="form-row" id='JobIdAttr' class='hiddenAttrs'>
+		<label for="node-input-JobId"><i class="fa fa-tag"></i>JobId</label>
+		<input type="text" id="node-input-JobId" placeholder="JobId"></input>
+	</div> 
+	<div class="form-row" id='TextAttr' class='hiddenAttrs'>
+		<label for="node-input-Text"><i class="fa fa-tag"></i>Text</label>
+		<input type="text" id="node-input-Text" placeholder="Text"  pattern=".{,5000}"></input>
+	</div> 
+	<div class="form-row" id='LanguageTextAttr' class='hiddenAttrs'>
+			<label for="node-input-LanguageText"><i class="fa fa-tag"></i>Text</label>
+			<input type="text" id="node-input-LanguageText" placeholder="LanguageText" pattern=".{20,5000}"></input>
+		</div> 
+		</div>
+
+ <script>
+	  var nodeOps={
+				BatchDetectDominantLanguage:[
+					'#LanguageTextListAttr'
+					],
+				BatchDetectEntities:[
+					'#LanguageCodeAttr','#TextListAttr'
+					],
+				BatchDetectKeyPhrases:[
+					'#LanguageCodeAttr','#TextListAttr'
+					],
+				BatchDetectSentiment:[
+					'#LanguageCodeAttr','#TextListAttr'
+					],
+				BatchDetectSyntax:[
+					'#LanguageCodeAttr','#TextListAttr'
+					],
+				DescribeDominantLanguageDetectionJob:[
+					'#JobIdAttr'
+					],
+				DescribeEntitiesDetectionJob:[
+					'#JobIdAttr'
+					],
+				DescribeKeyPhrasesDetectionJob:[
+					'#JobIdAttr'
+					],
+				DescribeSentimentDetectionJob:[
+					'#JobIdAttr'
+					],
+				DescribeTopicsDetectionJob:[
+					'#JobIdAttr'
+					],
+				DetectDominantLanguage:[
+					'#LanguageTextAttr'
+					],
+				DetectEntities:[
+					'#LanguageCodeAttr','#TextAttr'
+					],
+				DetectKeyPhrases:[
+					'#LanguageCodeAttr','#TextAttr'
+					],
+				DetectSentiment:[
+					'#LanguageCodeAttr','#TextAttr'
+					],
+				DetectSyntax:[
+					'#LanguageCodeAttr','#TextAttr'
+					],
+				ListDominantLanguageDetectionJobs:[
+
+					],
+				ListEntitiesDetectionJobs:[
+
+					],
+				ListKeyPhrasesDetectionJobs:[
+
+					],
+				ListSentimentDetectionJobs:[
+					
+					],
+				ListTopicsDetectionJobs:[
+					
+					],
+				StartDominantLanguageDetectionJob:[
+					
+					],
+				StartEntitiesDetectionJob:[
+					
+					],
+				StartKeyPhrasesDetectionJob:[
+					
+					],
+				StartSentimentDetectionJob:[
+					
+					],
+				StartTopicsDetectionJob:[
+					
+					],
+				StopDominantLanguageDetectionJob:[
+					'#JobIdAttr'
+					],
+				StopEntitiesDetectionJob:[
+					'#JobIdAttr'
+					],
+				StopKeyPhrasesDetectionJob:[
+					'#JobIdAttr'
+					],
+				StopSentimentDetectionJob:[
+					'#JobIdAttr'
+					]
+		};
+		$('#node-input-operation').on('change',function(){
+			$('#AttrHolder').children().addClass('hiddenAttrs').removeClass('visibleAttrs');
+				if (nodeOps[this.value])
+					$(nodeOps[this.value].join()).addClass('visibleAttrs').removeClass('hiddenAttrs');
+		 });
+ </script>
+
+</script>
+
+<script type="text/x-red" data-help-name="amazon Rekognition">
+<p>
+AWS Amazon Comprehend
+</p>
+<p>
+<b>Descriptions to be added</b<
+</p>
+<p>
+NOTE: Parameters must be specified in the message, using the case specified in the AWS API documentation (normally UpperCaseLeading)..
+</p>
+
+</script>
+
+<script type="text/javascript">
+	RED.nodes.registerType('AWS Comprehend',{
+		category: 'AWS',
+		color:"#C0DEED",
+		defaults: {
+			aws: {type:"amazon config",required:true},
+			operation: { value: 'DetectSentiment' },
+				LanguageCode: { value: "en"} ,
+				Text: { value: ""} ,
+				JobId: { value: ""} ,
+			name: { value: "" }
+		},
+		inputs:1,
+		outputs:1,
+		icon: "aws.png",
+		align: "right",
+		label: function() {
+			return this.name || "Comprehend " + this.operation;
+		},
+		oneditprepare: function () {
+
+		}
+	});
+</script>
+
