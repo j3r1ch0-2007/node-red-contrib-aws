@@ -18,6 +18,7 @@ Nodes (All AWS API functions are available)
 * Firehose
 * KMS
 * AWS config
+* Comprehend
 
 Payload returned from the AWS SDK is sometimes (particularly S3.Get) encoded in a BUFFER.  To parse this to a string pass the output into a function with msg.payload=Buffer.from(msg.payload.Body).toString("utf-8") or similar to decode strings.
 
